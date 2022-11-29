@@ -1,17 +1,20 @@
 import { defineStore } from "pinia";
-import { toRefs, reactive } from "vue";
+import { reactive, toRefs } from "vue";
 
 export const useAppState = defineStore("app-state", () => {
   const state = reactive({
-    count: 0,
+    isDark: localStorage.getItem("is-dark") === "true",
   });
 
-  const increment = () => {
-    state.count++;
+  const toggleDarkMode = () => {
+    let dark = !state.isDark;
+    state.isDark = dark;
+    document.documentElement.classList.toggle("dark", dark);
+    localStorage.setItem("is-dark", dark ? "true" : "false");
   };
 
   return {
     ...toRefs(state),
-    increment,
+    toggleDarkMode,
   };
 });

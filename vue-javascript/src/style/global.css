@@ -5,8 +5,16 @@ body {
   padding: 0;
 }
 
-#app {
-  width: 100vw;
-  height: 100vh;
+:root {
   overflow: auto;
+}
+
+* {
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+.icon {
+  width: 17px;
+  height: 17px;
 }

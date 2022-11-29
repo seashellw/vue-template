@@ -1,14 +1,17 @@
-<script setup>
-import AppButton from "@/components/public/AppButton.vue";
-import { useAppState } from "./app-state";
-
-const appState = useAppState();
-const { increment } = appState;
-console.log(appState.count);
-</script>
+<script setup></script>
 
 <template>
-  <div>
-    <AppButton @click="increment">{{ appState.count }}</AppButton>
+  <div class="page-home">
+    <h1>Home</h1>
+    <p>
+      This is the home page. It is a simple page that does not use any
+      components.
+    </p>
   </div>
 </template>
+
+<style scoped>
+.page-home {
+  margin: 10px;
+}
+</style>

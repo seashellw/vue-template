@@ -1,2 +1,6 @@
 :root {
+  --el-color-primary: #409eff;
+
+  --app-aside-width: 200px;
+  --app-header-height: 50px;
 }

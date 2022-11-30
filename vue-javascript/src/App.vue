@@ -1,8 +1,12 @@
 <script setup>
 import AppAside from "@/components/layout/AppAside.vue";
-import AppFooter from "@/components/layout/AppFooter.vue";
 import AppHeader from "@/components/layout/AppHeader.vue";
 import { RouterView } from "vue-router";
+import { defineAsyncComponent } from "vue";
+
+const AppFooter = defineAsyncComponent(() =>
+  import("@/components/layout/AppFooter.vue")
+);
 </script>
 
 <template>
@@ -11,13 +15,15 @@ import { RouterView } from "vue-router";
   <main class="main">
     <RouterView />
   </main>
-  <AppFooter />
+  <Suspense>
+    <AppFooter />
+  </Suspense>
 </template>
 
 <style scoped>
 .main {
-  padding-top: var(--app-header-height);
-  padding-left: var(--app-aside-width);
+  padding: calc(var(--app-header-height) + 10px) 10px 10px
+    calc(var(--app-aside-width) + 10px);
   min-height: 100vh;
   background-color: var(--el-bg-color-page);
 }

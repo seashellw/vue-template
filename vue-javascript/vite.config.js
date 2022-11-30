@@ -4,6 +4,7 @@ import AutoImport from "unplugin-auto-import/vite";
 import { ElementPlusResolver } from "unplugin-vue-components/resolvers";
 import Components from "unplugin-vue-components/vite";
 import { defineConfig } from "vite";
+import ElementPlus from "unplugin-element-plus/vite";
 
 export default defineConfig({
   plugins: [
@@ -14,6 +15,7 @@ export default defineConfig({
     Components({
       resolvers: [ElementPlusResolver()],
     }),
+    ElementPlus({}),
   ],
   base: "/vue/",
   resolve: {

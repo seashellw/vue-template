@@ -1,19 +1,34 @@
 <script setup>
 import { useAppState } from "@/pages/app-state";
-import { Sunrise, MoonNight } from "@element-plus/icons-vue";
+import {
+  DArrowLeft,
+  DArrowRight,
+  MoonNight,
+  Sunrise,
+} from "@element-plus/icons-vue";
 import { computed } from "vue";
+
 const appState = useAppState();
-const { toggleDarkMode } = appState;
-const ButtonDarkIcon = computed(() => (appState.isDark ? Sunrise : MoonNight));
+const { toggleDarkMode, toggleFold } = appState;
+const DarkIcon = computed(() => (appState.isDark ? Sunrise : MoonNight));
+const FoldIcon = computed(() => (appState.isFold ? DArrowRight : DArrowLeft));
 </script>
 
 <template>
   <header class="header">
+    <ElButton
+      circle
+      :icon="FoldIcon"
+      title="切换导航栏"
+      class="icon-button"
+      @click="toggleFold"
+    />
     <h1 class="flex-grow text-lg">HEADER</h1>
     <ElButton
       circle
-      :icon="ButtonDarkIcon"
+      :icon="DarkIcon"
       title="主题切换"
+      class="icon-button"
       @click="toggleDarkMode"
     />
   </header>
@@ -32,5 +47,11 @@ const ButtonDarkIcon = computed(() => (appState.isDark ? Sunrise : MoonNight));
   align-items: center;
   gap: 10px;
   border-bottom: 1px solid var(--el-border-color);
+  z-index: 2;
+}
+
+.icon-button {
+  font-size: 18px;
+  height: auto;
 }
 </style>

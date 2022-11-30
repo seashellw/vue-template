@@ -1,20 +1,28 @@
 import { defineStore } from "pinia";
-import { reactive, toRefs } from "vue";
+import { ref } from "vue";
 
 export const useAppState = defineStore("app-state", () => {
-  const state = reactive({
-    isDark: localStorage.getItem("is-dark") === "true",
-  });
+  const isDark = ref(localStorage.getItem("is-dark") === "true");
 
   const toggleDarkMode = () => {
-    let dark = !state.isDark;
-    state.isDark = dark;
-    document.documentElement.classList.toggle("dark", dark);
-    localStorage.setItem("is-dark", dark ? "true" : "false");
+    isDark.value = !isDark.value;
+    document.documentElement.classList.toggle("dark", isDark.value);
+    localStorage.setItem("is-dark", isDark.value ? "true" : "false");
+  };
+
+  const isFold = ref(false);
+  const toggleFold = () => {
+    isFold.value = !isFold.value;
+    document.documentElement.style.setProperty(
+      "--app-aside-width",
+      isFold.value ? "64px" : "200px"
+    );
   };
 
   return {
-    ...toRefs(state),
+    isDark,
+    isFold,
+    toggleFold,
     toggleDarkMode,
   };
 });

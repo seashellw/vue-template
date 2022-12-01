@@ -1,13 +1,12 @@
 <script setup></script>
 
 <template>
-  <footer class="footer">FOOTER</footer>
+  <footer class="footer">💖页脚</footer>
 </template>
 
 <style scoped>
 .footer {
   background-color: var(--el-bg-color-page);
-  padding-left: var(--app-aside-width);
   min-height: 70px;
   display: flex;
   justify-content: center;

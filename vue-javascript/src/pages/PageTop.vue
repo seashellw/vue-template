@@ -16,7 +16,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <el-table :data="tableData" class="el-table">
+  <el-table :data="tableData" max-height="500px">
     <el-table-column prop="name" label="标题">
       <template #default="{ row }">
         <el-link :href="row.url" target="_blank">{{ row.name }}</el-link>
@@ -26,8 +26,4 @@ onMounted(() => {
   </el-table>
 </template>
 
-<style scoped>
-.el-table {
-  overflow: hidden;
-}
-</style>
+<style scoped></style>

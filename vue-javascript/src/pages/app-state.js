@@ -1,9 +1,12 @@
 import { defineStore } from "pinia";
-import { ref } from "vue";
+import { ref, watch } from "vue";
 
 export const useAppState = defineStore("app-state", () => {
   const isDark = ref(localStorage.getItem("is-dark") === "true");
-
+  watch(isDark, (val) => {
+    document.documentElement.classList.toggle("dark", val);
+    localStorage.setItem("is-dark", val ? "true" : "false");
+  });
   const toggleDarkMode = () => {
     isDark.value = !isDark.value;
     document.documentElement.classList.toggle("dark", isDark.value);
@@ -11,12 +14,14 @@ export const useAppState = defineStore("app-state", () => {
   };
 
   const isFold = ref(false);
-  const toggleFold = () => {
-    isFold.value = !isFold.value;
+  watch(isFold, (val) => {
     document.documentElement.style.setProperty(
       "--app-aside-width",
-      isFold.value ? "64px" : "200px"
+      val ? "64px" : "200px"
     );
+  });
+  const toggleFold = () => {
+    isFold.value = !isFold.value;
   };
 
   return {

@@ -34,9 +34,6 @@ const route = useRoute();
 
 <style scoped>
 .aside {
-  position: fixed;
-  top: var(--app-header-height);
-  left: 0;
   height: calc(100vh - var(--app-header-height));
   width: var(--app-aside-width);
   background-color: var(--el-bg-color-page);

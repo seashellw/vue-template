@@ -1,9 +1,9 @@
 <script setup>
-import { useAppState } from "@/pages/app-state.js";
+import { useAppStore } from "@/store/app-store.js";
 import { Setting, Menu as IconMenu } from "@element-plus/icons-vue";
 import { useRoute } from "vue-router";
 
-const appState = useAppState();
+const appStore = useAppStore();
 const route = useRoute();
 </script>
 
@@ -13,7 +13,7 @@ const route = useRoute();
       :collapse-transition="false"
       :default-active="route.path"
       class="el-menu"
-      :collapse="appState.isFold"
+      :collapse="appStore.isFold"
       router
     >
       <ElMenuItem index="/home">
@@ -36,7 +36,6 @@ const route = useRoute();
 .aside {
   height: calc(100vh - var(--app-header-height));
   width: var(--app-aside-width);
-  background-color: var(--el-bg-color-page);
   overflow-y: auto;
   overflow-x: hidden;
   border-right: 1px solid var(--el-border-color);

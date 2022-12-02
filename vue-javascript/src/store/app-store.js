@@ -1,7 +1,7 @@
 import { defineStore } from "pinia";
 import { ref, watch } from "vue";
 
-export const useAppState = defineStore("app-state", () => {
+export const useAppStore = defineStore("app-store", () => {
   const isDark = ref(localStorage.getItem("is-dark") === "true");
   watch(isDark, (val) => {
     document.documentElement.classList.toggle("dark", val);

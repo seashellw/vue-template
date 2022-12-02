@@ -1,5 +1,5 @@
 <script setup>
-import { useAppState } from "@/pages/app-state";
+import { useAppStore } from "@/store/app-store";
 import {
   DArrowLeft,
   DArrowRight,
@@ -9,11 +9,11 @@ import {
 import { computed } from "vue";
 import { useStoreStorage } from "@/util/hooks";
 
-const appState = useAppState();
-useStoreStorage(appState);
-const { toggleDarkMode, toggleFold } = appState;
-const DarkIcon = computed(() => (appState.isDark ? Sunrise : MoonNight));
-const FoldIcon = computed(() => (appState.isFold ? DArrowRight : DArrowLeft));
+const appStore = useAppStore();
+useStoreStorage(appStore);
+const { toggleDarkMode, toggleFold } = appStore;
+const DarkIcon = computed(() => (appStore.isDark ? Sunrise : MoonNight));
+const FoldIcon = computed(() => (appStore.isFold ? DArrowRight : DArrowLeft));
 </script>
 
 <template>

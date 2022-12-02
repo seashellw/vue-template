@@ -1,16 +1,10 @@
-import { watch } from "vue";
+import { reactive, watch } from "vue";
 import destr from "destr";
 import { merge } from "lodash-es";
+import { useRouter } from "vue-router";
 
 /**
- * 单向同步ref到另一个ref
- */
-export const useSyncTo = (ref1, ref2) => {
-  watch(ref1, (val) => (ref2.value = val), { immediate: true });
-};
-
-/**
- * 本地存储pinia store数据，用于持久化，在下次打开页面时恢复数据
+ * 本地存储store数据，用于持久化
  */
 export const useStoreStorage = (store) => {
   if (!store.$id) {
@@ -18,13 +12,52 @@ export const useStoreStorage = (store) => {
   }
   const oldData = destr(localStorage.getItem(store.$id));
   if (oldData instanceof Object) {
-    merge(store, oldData);
+    merge(store.$state, oldData);
   }
   watch(
     store,
     (val) => {
-      localStorage.setItem(store.$id, JSON.stringify(val));
+      localStorage.setItem(store.$id, JSON.stringify(val.$state));
     },
     { deep: true }
   );
+};
+
+/**
+ * 将状态存储在url中
+ */
+export const useQueryReactive = (defaultValue) => {
+  const state = reactive(defaultValue);
+  const router = useRouter();
+  const query = router.currentRoute.value.query;
+  const keys = [];
+  for (const key in state) {
+    switch (typeof state[key]) {
+      case "number":
+        keys.push(key);
+        state[key] = parseFloat(query[key]) || state[key];
+        break;
+      case "boolean":
+        keys.push(key);
+        state[key] =
+          query[key] === "true"
+            ? true
+            : query[key] === "false"
+            ? false
+            : state[key];
+        break;
+      case "string":
+        keys.push(key);
+        state[key] = query[key] || state[key];
+        break;
+    }
+  }
+  watch(state, (val) => {
+    const query = { ...router.currentRoute.value.query };
+    for (const key of keys) {
+      query[key] = val[key];
+    }
+    router.replace({ query });
+  });
+  return state;
 };

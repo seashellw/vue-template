@@ -19,17 +19,9 @@ const AppFooter = defineAsyncComponent(() =>
     <main class="main">
       <RouterView v-slot="{ Component: C }">
         <KeepAlive>
-          <Component
-            :is="C"
-            v-if="$route.meta.keepAlive"
-            :key="$route.fullPath"
-          />
+          <Component :is="C" v-if="$route.meta.keepAlive" :key="$route.path" />
         </KeepAlive>
-        <Component
-          :is="C"
-          v-if="!$route.meta.keepAlive"
-          :key="$route.fullPath"
-        />
+        <Component :is="C" v-if="!$route.meta.keepAlive" :key="$route.path" />
       </RouterView>
     </main>
   </section>
@@ -55,7 +47,6 @@ const AppFooter = defineAsyncComponent(() =>
 .main {
   padding: 10px;
   min-height: 100vh;
-  background-color: var(--el-bg-color-page);
   flex-grow: 1;
   flex-shrink: 1;
   overflow: hidden;

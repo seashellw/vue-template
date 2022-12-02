@@ -1,7 +1,7 @@
 import { createApp } from "vue";
 import { createPinia } from "pinia";
 import { router } from "@/router/router";
-import "@/style/style.css";
+import "@/style/index.css";
 import App from "@/App.vue";
 import { ElMessage } from "element-plus";
 

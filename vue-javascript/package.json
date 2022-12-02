@@ -11,6 +11,8 @@
     "@element-plus/icons-vue": "^2.0.10",
     "@vitejs/plugin-vue": "^3.2.0",
     "@vueuse/core": "^9.6.0",
+    "autoprefixer": "^10.4.13",
+    "cssnano": "^5.1.14",
     "date-fns": "^2.29.3",
     "destr": "^1.2.1",
     "element-plus": "^2.2.25",

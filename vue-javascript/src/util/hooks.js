@@ -1,6 +1,6 @@
-import { reactive, watch } from "vue";
+import { reactive, toRefs, watch } from "vue";
 import destr from "destr";
-import { merge } from "lodash-es";
+import { merge, throttle } from "lodash-es";
 import { useRouter } from "vue-router";
 
 /**
@@ -60,4 +60,35 @@ export const useQueryReactive = (defaultValue) => {
     router.replace({ query });
   });
   return state;
+};
+
+/**
+ * 发起异步请求。节流，依赖刷新，自动执行。
+ * fn 为异步请求函数，
+ * throttleMs 节流时间，
+ * refreshDeps 依赖，当依赖变化时，重新执行请求，
+ * auto 是否自动执行
+ */
+export const useFetch = (
+  fn,
+  { throttleMs = 0, refreshDeps = [], auto = true } = {}
+) => {
+  const state = reactive({
+    loading: false,
+    data: null,
+    error: null,
+  });
+  const run = throttle(async () => {
+    state.loading = true;
+    try {
+      state.data = await fn();
+    } catch (err) {
+      state.error = err;
+    } finally {
+      state.loading = false;
+    }
+  }, throttleMs);
+  if (auto) run();
+  watch(refreshDeps, run);
+  return { ...toRefs(state), run };
 };

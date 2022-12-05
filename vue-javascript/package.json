@@ -5,7 +5,7 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "lint": "eslint . --ext .vue,.js --fix --ignore-path .gitignore && prettier --write ./src"
+    "lint": "eslint --fix --ext .vue,.js ./src && prettier --write ./src"
   },
   "dependencies": {
     "@element-plus/icons-vue": "^2.0.10",
@@ -36,6 +36,15 @@
     "extends": [
       "plugin:vue/vue3-recommended",
       "prettier"
-    ]
+    ],
+    "rules": {
+      "vue/component-name-in-template-casing": [
+        "error",
+        "PascalCase",
+        {
+          "registeredComponentsOnly": false
+        }
+      ]
+    }
   }
 }

@@ -12,14 +12,16 @@ const { data, loading } = useFetch(async () => {
 </script>
 
 <template>
-  <el-table v-loading="loading" :data="data" max-height="500px">
-    <el-table-column prop="name" label="标题">
+  <ElTable v-loading="loading" :data="data" max-height="500px">
+    <ElTableColumn prop="name" label="标题">
       <template #default="{ row }">
-        <el-link :href="row.url" target="_blank">{{ row.name }}</el-link>
+        <ElLink :href="row.url" target="_blank">
+          {{ row.name }}
+        </ElLink>
       </template>
-    </el-table-column>
-    <el-table-column prop="hot" label="热度" width="180" />
-  </el-table>
+    </ElTableColumn>
+    <ElTableColumn prop="hot" label="热度" width="180" />
+  </ElTable>
 </template>
 
 <style scoped></style>

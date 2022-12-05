@@ -20,13 +20,13 @@ const route = useRoute();
         <ElIcon>
           <IconMenu />
         </ElIcon>
-        <template #title> 主页</template>
+        <template #title> 主页 </template>
       </ElMenuItem>
       <ElMenuItem index="/top">
         <ElIcon>
           <Setting />
         </ElIcon>
-        <template #title> 热搜榜</template>
+        <template #title> 热搜榜 </template>
       </ElMenuItem>
     </ElMenu>
   </aside>

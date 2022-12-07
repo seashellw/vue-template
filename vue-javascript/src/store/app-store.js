@@ -17,7 +17,7 @@ export const useAppStore = defineStore("app-store", () => {
   watch(isFold, (val) => {
     document.documentElement.style.setProperty(
       "--app-aside-width",
-      val ? "64px" : "200px"
+      val ? "var(--app-aside-close-width)" : "var(--app-aside-open-width)"
     );
   });
   const toggleFold = () => {

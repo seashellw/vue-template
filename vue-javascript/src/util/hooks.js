@@ -75,14 +75,15 @@ export const useFetch = (
 ) => {
   const state = reactive({
     loading: false,
-    data: null,
-    error: null,
+    data: undefined,
+    error: undefined,
   });
   const run = throttle(async () => {
     state.loading = true;
     try {
       state.data = await fn();
     } catch (err) {
+      console.error(err);
       state.error = err;
     } finally {
       state.loading = false;

@@ -1,9 +1,12 @@
 @import url("element-plus/theme-chalk/el-var.css");
 @import url("element-plus/theme-chalk/dark/css-vars.css");
 
-:root:root {
-  --el-color-primary: #1383c9;
+html:root {
+  --el-color-primary: #409eff;
 
-  --app-aside-width: 200px;
+  --app-aside-open-width: 200px;
+  --app-aside-close-width: 64px;
+  --app-aside-width: var(--app-aside-open-width);
+
   --app-header-height: 50px;
 }

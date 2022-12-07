@@ -1,11 +1,18 @@
-<script setup></script>
+<script setup>
+import { ElNotification } from "element-plus";
+
+const test = () => {
+  ElNotification.success({
+    title: "Success",
+    message: "This is a success message",
+  });
+};
+</script>
 
 <template>
-  <p class="m-4">主页</p>
+  <p class="m-4">
+    <ElButton @click="test"> hello world </ElButton>
+  </p>
 </template>
 
-<style scoped>
-.page-home {
-  margin: 10px;
-}
-</style>
+<style scoped></style>

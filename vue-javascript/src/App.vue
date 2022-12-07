@@ -1,6 +1,10 @@
 <script setup>
 import AppHeader from "@/components/layout/AppHeader.vue";
+import "dayjs/locale/zh-cn";
 import zhCn from "element-plus/dist/locale/zh-cn.mjs";
+import "element-plus/es/components/message-box/style/css";
+import "element-plus/es/components/message/style/css";
+import "element-plus/es/components/notification/style/css";
 import { defineAsyncComponent } from "vue";
 import { RouterView } from "vue-router";
 

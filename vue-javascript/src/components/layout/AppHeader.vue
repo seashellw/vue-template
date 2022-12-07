@@ -17,7 +17,7 @@ const FoldIcon = computed(() => (appStore.isFold ? DArrowRight : DArrowLeft));
 </script>
 
 <template>
-  <header class="header backdrop-blur-md">
+  <header class="header backdrop-blur-md w-full flex px-2 items-center gap-2">
     <ElButton
       circle
       text
@@ -44,12 +44,7 @@ const FoldIcon = computed(() => (appStore.isFold ? DArrowRight : DArrowLeft));
 
 <style scoped>
 .header {
-  width: 100%;
   height: var(--app-header-height);
-  display: flex;
-  padding: 0 10px;
-  align-items: center;
-  gap: 10px;
   border-bottom: 1px solid var(--el-border-color);
 }
 

@@ -11,12 +11,12 @@ const AppAside = defineAsyncComponent(() =>
 
 <template>
   <ElConfigProvider :locale="zhCn">
-    <AppHeader class="header" />
+    <AppHeader class="header sticky top-0" />
     <section class="flex">
       <Suspense>
-        <AppAside class="aside" />
+        <AppAside class="aside sticky flex-grow-0 flex-shrink-0" />
       </Suspense>
-      <main class="main">
+      <main class="main p-2 flex-grow flex-shrink overflow-hidden">
         <RouterView v-slot="{ Component: C }">
           <KeepAlive>
             <Component
@@ -34,22 +34,10 @@ const AppAside = defineAsyncComponent(() =>
 
 <style scoped>
 .header {
-  position: sticky;
-  top: 0;
   z-index: 10;
 }
 
 .aside {
-  position: sticky;
   top: var(--app-header-height);
-  flex-grow: 0;
-  flex-shrink: 0;
-}
-
-.main {
-  padding: 10px;
-  flex-grow: 1;
-  flex-shrink: 1;
-  overflow: hidden;
 }
 </style>

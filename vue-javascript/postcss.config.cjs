@@ -1,7 +1,10 @@
 module.exports = {
   plugins: {
     tailwindcss: {},
-    autoprefixer: {},
+    "postcss-pxtorem": {
+      propList: ["*"],
+    },
+    "postcss-preset-env": {},
     cssnano: {},
   },
 };

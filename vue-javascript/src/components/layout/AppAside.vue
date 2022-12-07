@@ -1,12 +1,12 @@
 <script setup>
-import { useAppStore } from "@/store/app-store.js";
 import { Menu as IconMenu, Compass } from "@element-plus/icons-vue";
+import { useAppStore } from "@/store/app-store.js";
 
 const appStore = useAppStore();
 </script>
 
 <template>
-  <aside class="aside">
+  <aside class="aside overflow-y-auto overflow-x-hidden">
     <ElMenu
       :collapse-transition="false"
       :default-active="$route.path"
@@ -30,12 +30,5 @@ const appStore = useAppStore();
 .aside {
   height: calc(100vh - var(--app-header-height));
   width: var(--app-aside-width);
-  overflow-y: auto;
-  overflow-x: hidden;
-  border-right: 1px solid var(--el-border-color);
-}
-
-.aside:deep(.el-menu) {
-  border-right: none;
 }
 </style>

@@ -9,4 +9,4 @@ if (import.meta.env.VITE_MOTD === "dev") {
   urls.toolsTopSearch = "https://api.example.com";
 }
 
-export const toolsTopSearch = () => get(urls.toolsTopSearch);
+export const toolsTopSearch = (data) => get(urls.toolsTopSearch, data);

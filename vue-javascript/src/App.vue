@@ -1,33 +1,35 @@
 <script setup>
 import AppHeader from "@/components/layout/AppHeader.vue";
-import { RouterView } from "vue-router";
+import zhCn from "element-plus/dist/locale/zh-cn.mjs";
 import { defineAsyncComponent } from "vue";
+import { RouterView } from "vue-router";
+
 const AppAside = defineAsyncComponent(() =>
   import("@/components/layout/AppAside.vue")
-);
-const AppFooter = defineAsyncComponent(() =>
-  import("@/components/layout/AppFooter.vue")
 );
 </script>
 
 <template>
-  <AppHeader class="header" />
-  <section class="flex">
-    <Suspense>
-      <AppAside class="aside" />
-    </Suspense>
-    <main class="main">
-      <RouterView v-slot="{ Component: C }">
-        <KeepAlive>
-          <Component :is="C" v-if="$route.meta.keepAlive" :key="$route.path" />
-        </KeepAlive>
-        <Component :is="C" v-if="!$route.meta.keepAlive" :key="$route.path" />
-      </RouterView>
-    </main>
-  </section>
-  <Suspense>
-    <AppFooter />
-  </Suspense>
+  <ElConfigProvider :locale="zhCn">
+    <AppHeader class="header" />
+    <section class="flex">
+      <Suspense>
+        <AppAside class="aside" />
+      </Suspense>
+      <main class="main">
+        <RouterView v-slot="{ Component: C }">
+          <KeepAlive>
+            <Component
+              :is="C"
+              v-if="$route.meta.keepAlive"
+              :key="$route.path"
+            />
+          </KeepAlive>
+          <Component :is="C" v-if="!$route.meta.keepAlive" :key="$route.path" />
+        </RouterView>
+      </main>
+    </section>
+  </ElConfigProvider>
 </template>
 
 <style scoped>
@@ -46,7 +48,6 @@ const AppFooter = defineAsyncComponent(() =>
 
 .main {
   padding: 10px;
-  min-height: 100vh;
   flex-grow: 1;
   flex-shrink: 1;
   overflow: hidden;

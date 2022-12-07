@@ -1,5 +1,6 @@
 <script setup>
 import { useAppStore } from "@/store/app-store";
+import { useStoreStorage } from "@/util/hooks";
 import {
   DArrowLeft,
   DArrowRight,
@@ -7,7 +8,6 @@ import {
   Sunrise,
 } from "@element-plus/icons-vue";
 import { computed } from "vue";
-import { useStoreStorage } from "@/util/hooks";
 
 const appStore = useAppStore();
 useStoreStorage(appStore);
@@ -17,9 +17,10 @@ const FoldIcon = computed(() => (appStore.isFold ? DArrowRight : DArrowLeft));
 </script>
 
 <template>
-  <header class="header">
+  <header class="header backdrop-blur-md">
     <ElButton
       circle
+      text
       :icon="FoldIcon"
       title="切换导航栏"
       class="icon-button"
@@ -32,6 +33,7 @@ const FoldIcon = computed(() => (appStore.isFold ? DArrowRight : DArrowLeft));
     <p class="flex-grow text-sm">副标题</p>
     <ElButton
       circle
+      text
       :icon="DarkIcon"
       title="主题切换"
       class="icon-button"
@@ -44,7 +46,6 @@ const FoldIcon = computed(() => (appStore.isFold ? DArrowRight : DArrowLeft));
 .header {
   width: 100%;
   height: var(--app-header-height);
-  background-color: var(--el-bg-color-page);
   display: flex;
   padding: 0 10px;
   align-items: center;
@@ -58,7 +59,7 @@ const FoldIcon = computed(() => (appStore.isFold ? DArrowRight : DArrowLeft));
 }
 
 .logo-img {
-  width: 35px;
-  height: 35px;
+  width: 32px;
+  height: 32px;
 }
 </style>
